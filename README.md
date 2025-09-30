@@ -1,7 +1,7 @@
 # ProxFemur & Phantom – nnUNet v2 Models
 
 This repository relates to the work presented in the following publication: [Link / DOI].  
-If you use parts of this repository, please **cite the paper as well as [nnUNet](https://github.com/MIC-DKFZ/nnUNet) and [TotalSegmentator](https://pubs.rsna.org/doi/10.1148/ryai.230024)**.
+If you use parts of this repository, please **cite our paper as well as [nnUNet](https://github.com/MIC-DKFZ/nnUNet) and [TotalSegmentator](https://pubs.rsna.org/doi/10.1148/ryai.230024)**.
 
 ---
 
