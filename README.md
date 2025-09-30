@@ -19,5 +19,5 @@ Es wird der vollständige proximale Femur segmentiert, also inklusive Femur Kopf
 
 Link zu Modell weights:
 
-- [ProxFemur](link)
-- [Phantom](link)
+- [ProxFemur](https://cloud.rz.uni-kiel.de/index.php/s/3x5dbXamP6qw4TC)
+- [Phantom](https://cloud.rz.uni-kiel.de/index.php/s/YBkDZ7JNreK66M5)
