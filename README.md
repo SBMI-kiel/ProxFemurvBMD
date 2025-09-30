@@ -54,3 +54,5 @@ Instructions on how to apply pretrained models are provided here: [Link](https:/
 - [Phantom](https://cloud.rz.uni-kiel.de/index.php/s/YBkDZ7JNreK66M5)
 
 ---
+
+Note: This is not a medical device and is not intended for clinical usage. 
