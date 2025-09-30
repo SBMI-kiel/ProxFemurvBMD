@@ -1,23 +1,57 @@
-# ProxFemurvBMD
+# ProxFemur & Phantom – nnUNet v2 Models
 
-Dieses Repository bezieht sich auf die Arbeiten aus folgender Veröffentlichung [Link / DOI]. 
-Wenn Sie Teile davon verwenden zitieren sie bitte das Paper, sowie [nnUNet](https://www.google.com/url?q=https://www.nature.com/articles/s41592-020-01008-z&sa=D&source=docs&ust=1677235958581755&usg=AOvVaw3dWL0SrITLhCJUBiNIHCQO) und [TotalSegmentator](https://pubs.rsna.org/doi/10.1148/ryai.230024).
+This repository relates to the work presented in the following publication: [Link / DOI].  
+If you use parts of this repository, please **cite the paper as well as [nnUNet](https://github.com/MIC-DKFZ/nnUNet) and [TotalSegmentator](https://pubs.rsna.org/doi/10.1148/ryai.230024)**.
 
-Wir stellen hier KI Modell Weights für zwei nnUNets (v2) zur verfügung.
+---
 
-Mit diesen kann der (1) **proximale Femur** (beide Seiten, falls vorhanden) in einem CT Scan segmentiert werden, sowie ein mögliches vorhandens (2) **Kalibrierphantom** (Typ: Fa. Imaga Analysis, USA).
-Zusammen mit der seitensepzifischen (links und rechts) gesamten Femur Maske, erzeugt mit dem TotalSegmentator Tool [Link], kann aus der proximal Femur Maske ebenfalls die seitenspezifischen (links und rechts) proximale Femora Masken erzeugt werden.
+## Provided Models
+We provide pretrained **nnUNet v2** model weights for two tasks:
 
-Falls ein Kalbrierphantom vorhanden ist, kann aus der Segmentierungsmaske die Kalibrierparameter (a*x+b=y) für die Knochenmineraldichte aus HU Werten berechnet werden. (Label 1: 0 mg/cm³, Label 2: 75 mg/cm³, Label 3: 150 mg/cm³)
+1. **Proximal Femur Segmentation**  
+   - Segments the proximal femur (both sides, if present) in CT scans.  
+   - The entire proximal femur is included, **including the femoral head**.  
 
-Aus der proximalen Femur Maske kann die mittlere integrale volumetrische Knochendichte (integral vBMD) in HU (unkalibirert) oder ggf. in mg/cm³ (kalibriert) berechnet werden.
+2. **Calibration Phantom Segmentation**  
+   - Detects a calibration phantom (Type: Imaga Analysis, USA), if present.
 
-Es wird der vollständige proximale Femur segmentiert, also inklusive Femur Kopf.
+---
+
+## Integration with TotalSegmentator
+Using side-specific (left and right) whole-femur masks generated with the  
+[**TotalSegmentator** tool](https://github.com/wasserth/TotalSegmentator),  
+the proximal femur masks can be split into **side-specific proximal femur masks**.
+We recommand to use the "-stats_include_incomplete" option. 
+In the case that the femur is not completely included in the CT scan, the existing part is still segmented; without this option, the femur would not be segmented at all.
+
+---
+
+## Calibration
+If a calibration phantom is present, calibration parameters for bone mineral density  
+can be derived from the segmentation mask (linear model: *a × x + b = y*), based on HU values.
+
+- **Label 1**: 0 mg/cm³  
+- **Label 2**: 75 mg/cm³  
+- **Label 3**: 150 mg/cm³  
+
+---
+
+## Output
+From the proximal femur mask, the **mean integral volumetric bone mineral density (vBMD)** can be computed:
+
+- in **HU** (uncalibrated), or  
+- in **mg/cm³** (if calibration is available).
+
+---
 
 ## Installation & Usage
-[Hier](https://github.com/MIC-DKFZ/nnUNet/tree/master?tab=readme-ov-file#how-to-get-started) ist erklärt wie man das nnUNet verwendet und speziell wie man vortrainiert Modelle [Link](https://github.com/MIC-DKFZ/nnUNet/blob/master/documentation/how_to_use_nnunet.md#how-to-deploy-and-run-inference-with-your-pretrained-models) verwendet.
+See the [nnUNet documentation]([https://github.com/MIC-DKFZ/nnUNet](https://github.com/MIC-DKFZ/nnUNet/tree/master?tab=readme-ov-file#how-to-get-started)) for details on installation and usage.  
+Instructions on how to apply pretrained models are provided here: [Link](https://github.com/MIC-DKFZ/nnUNet/blob/master/documentation/how_to_use_nnunet.md#how-to-deploy-and-run-inference-with-your-pretrained-models).
 
-Link zu Modell weights:
+---
 
+## Model Weights
 - [ProxFemur](https://cloud.rz.uni-kiel.de/index.php/s/3x5dbXamP6qw4TC)
 - [Phantom](https://cloud.rz.uni-kiel.de/index.php/s/YBkDZ7JNreK66M5)
+
+---
